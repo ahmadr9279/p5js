@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+    
+    <script>
+        function setup() {
+            createCanvas(800,600);
+            background(47, 80, 147)
+            
+        }
+
+        function mouseMoved() {
+            fill(random(100,255),random(100,200),random(100,200))//color of the squares & circle
+            rect(mouseX-random(-25,25),mouseY-random(-25,25),random(10-20),random(10-20))// 
+            ellipse(mouseX-random(-25,25),mouseY-random(-25,25),random(10-20))
+            stroke(random(100,255),random(100,200),random(100,200))// color of the line
+            line(random(110,130),random(110,120),mouseX,mouseY)// states where the first point of line is located
+            fill(random(100,255),random(100,200),random(100,200))// gives color to the triangles
+            triangle(mouseX,mouseY,mouseX+5,mouseY+5,mouseX+5,mouseY-5)
+            // Controls all the shapes(triangles,circles,squares,lines) and determines their position based on where the mouse is moved
+            
+        }
+        
+        function keyPressed(){
+            background(47, 80, 147)
+            // Creates a new  identical background, once you press a button on the keyboard
+       
+        }
+        
+        function mouseDragged(){
+            fill(random(100,255),random(100,200),random(100,200))
+            point(mouseX+50,mouseY+50)
+            // Controls the dots that appear, once the mouse is clicked
+        
+        }
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/ahmadr9279/p5js/blob/gh-pages/interaction-project.html?footer=0"></script>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+</html>
