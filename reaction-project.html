@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+    
+    <script>
+      var xSpeed 
+      var r = 50
+     var why = 75
+      var ghi = 39
+      var qui = 85
+      var tot = 10
+      var yelo = 5
+      var hihi = 75
+      var sevy = 75
+      var cod = 5
+      var twe = 25
+        function setup() {
+            createCanvas(500,500);
+          
+        }
+
+        function draw() {
+          background(127, 110, 239)
+          fill(66, 244, 86)
+          rect(-1,425,4755,75)
+           //background
+           
+          fill(183, 73, 9)
+          ellipse(r,400,hihi,hihi)
+          fill(66, 134, 244)
+          ellipse(why,390,20,20)
+          line(ghi, 400, qui, 415)
+          xSpeed = 1
+          //pacman
+          
+          fill(255, 0, 29)
+          rect(200,tot,twe,sevy)
+          // laser
+          
+          tot += yelo
+          // makes laser move
+          
+          if(tot > 400){
+             yelo -= 5
+          }
+          //if laser too down go up
+          if(tot < 10){
+            yelo += 5
+          }
+          // if laser too up go down
+          
+          if (keyIsDown(RIGHT_ARROW)){
+            r += 5
+            why +=5
+            ghi += 5
+            qui += 5
+          }
+          // if right key press move pacman right
+          if (keyIsDown(LEFT_ARROW)){
+            r -= 5
+            why -= 5
+            ghi -= 5
+            qui -= 5
+          }
+          // if left key pressed pacman move left
+          
+          if( r > 200 && r <225 && tot == 400){
+            cod -= 1
+            //if pacman touches laser lower score
+          }
+          //points go down when pacman touches laser
+          textSize(32);
+text("score: " + cod, 10, 30)
+// write score in upper left corner
+          
+          
+            
+        }
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/ahmadr9279/p5js/blob/gh-pages/reaction-project.html?footer=0"></script>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+</html>
