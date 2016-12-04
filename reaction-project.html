@@ -34,7 +34,7 @@
           ellipse(why,390,20,20)
           line(ghi, 400, qui, 415)
           xSpeed = 1
-          //pacman
+          //little creature
           
           fill(255, 0, 29)
           rect(200,tot,twe,sevy)
@@ -58,20 +58,22 @@
             ghi += 5
             qui += 5
           }
-          // if right key press move pacman right
+          // if right key press move creature right
           if (keyIsDown(LEFT_ARROW)){
             r -= 5
             why -= 5
             ghi -= 5
             qui -= 5
           }
-          // if left key pressed pacman move left
+          // if left key pressed creature move left
           
-          if( r > 200 && r <225 && tot == 400){
+          else if( r > 200 && r <225 && tot == 400){
             cod -= 1
-            //if pacman touches laser lower score
+            //if creature touches laser lower score
           }
-          //points go down when pacman touches laser
+            else{
+                }
+          //points go down when creature touches laser
           textSize(32);
 text("score: " + cod, 10, 30)
 // write score in upper left corner
