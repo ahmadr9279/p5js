@@ -42,11 +42,12 @@
           
           tot += yelo
           // makes laser move
-          
+
           if(tot > 400){
              yelo -= 5
           }
           //if laser too down go up
+            
           if(tot < 10){
             yelo += 5
           }
@@ -69,11 +70,11 @@
           
           else if( r > 200 && r <225 && tot == 400){
             cod -= 1
-            //if creature touches laser lower score
-          }
+              }
             else{
                 }
-          //points go down when creature touches laser
+            //if creature touches laser lower score
+     
           textSize(32);
 text("score: " + cod, 10, 30)
 // write score in upper left corner
