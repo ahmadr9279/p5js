@@ -82,6 +82,7 @@ text("score: " + points, 10, 30)//tells the user the 'score' in the upper left-s
 </head>
 
 <body>
+    <form><input TYPE="button" onClick="history.go(0)" value="Reset"></form>
     <div id="code" class="container-fluid">
         <script src="https://gist-it.appspot.com/github/ahmadr9279/p5js/blob/gh-pages/pong-mix.html?footer=0"></script>
     </div>
@@ -92,7 +93,6 @@ text("score: " + points, 10, 30)//tells the user the 'score' in the upper left-s
             $('#code').before($('#defaultCanvas0').remove());
         });
     </script>
-    <form><input TYPE="button" onClick="history.go(0)" value="Reset"></form>
 </body>
 
     
