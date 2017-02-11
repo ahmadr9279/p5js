@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+  <title>Target Practice</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.13/p5.js"></script>
+  <script>
+    var targets = [];
+    var xsp = 5
+    var ysp = 5
+    var points = 0
+    var i = 0
+    var started = false
+
+
+
+
+
+    function setup() {
+      createCanvas(800, 600);
+
+      targets[i] = new Target;
+
+      for (var i = 0; i < 30; i++) {
+        targets.push(new Target());
+      }
+
+    }
+
+    function draw() {
+      if (!started) {
+        background(0, 55);
+
+        fill(255, 0, 0);
+        textSize(80);
+        text("Targets", 300, 270);
+
+        textSize(15)
+        text("by Josiah V. Elbey and Ahmad Rabah", 340, 310);
+
+        fill(255);
+        text("Press Enter to play", 370, 370);
+
+
+
+
+      }
+
+
+
+      if (keyCode === ENTER) {
+        started = true
+        background(0),
+          fill(255)
+        textSize(100)
+        text("Score: " + points, 200, 200)
+        fill(255);
+        textSize(50)
+ var s = second();
+        text("Time Left: " + s, 150, 350)
+
+        crossHair();
+        for (var i = 0; i < targets.length; i++) {
+          targets[i].move();
+          targets[i].display();
+          targets[i].bounce();
+          if (targets[i].fire()) {
+            targets.splice(i, 1);
+            targets.push(new Target());
+            
+          }
+        }
+        if(s>30){
+          text("Game Over" + s,200,300)
+          noLoop()
+         
+        }
+
+
+      }
+
+
+    }
+
+
+    function crossHair() {
+      fill(0);
+      stroke(255, 0, 0)
+      ellipse(mouseX, mouseY, 33, 33);
+      line(mouseX, mouseY, mouseX + 30, mouseY);
+      line(mouseX, mouseY, mouseX - 30, mouseY);
+      line(mouseX, mouseY, mouseX, mouseY + 30);
+      line(mouseX, mouseY, mouseX, mouseY - 30);
+
+    }
+
+
+
+    function Target() {
+      this.x = random(10, width)
+      this.y = random(10, height)
+      this.speedX = random(xsp)
+      this.speedY = random(ysp)
+
+
+      this.move = function() {
+        this.x = this.x + this.speedX;
+        this.y = this.y + this.speedY;
+
+      }
+
+
+      this.display = function() {
+        fill(255);
+        stroke(255, 0, 0)
+        strokeWeight(3)
+        ellipse(this.x, this.y, 30, 30);
+        ellipse(this.x, this.y, 20, 20);
+        ellipse(this.x, this.y, 10, 10);
+        point(this.x, this.y)
+
+      }
+
+
+      this.fire = function() {
+        if (dist(mouseX, mouseY, this.x, this.y) < 15 && mouseIsPressed) {
+
+          points++
+          return true;
+
+        }
+
+      }
+
+      this.bounce = function() {
+
+        if (this.x < 0 || this.x > width) {
+
+          this.speedX = this.speedX * -1;
+
+        }
+
+        if (this.y < 0 || this.y > height) {
+
+          this.speedY = this.speedY * -1;
+
+        }
+      }
+
+    }
+  </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/ahmadr9279/p5js/blob/gh-pages/project-game.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas').remove());
+        });
+    </script>
+ <form><input TYPE="button" onClick="history.go(0)" value="Reset"></form>
+</body>
+
+</html>
