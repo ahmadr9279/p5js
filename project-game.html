@@ -10,56 +10,44 @@
     var ysp = 5
     var points = 0
     var i = 0
-    var started = false
-
-
-
-
-
+    var started = false //helps notify if game is started
     function setup() {
       createCanvas(800, 600);
 
       targets[i] = new Target;
-
       for (var i = 0; i < 30; i++) {
         targets.push(new Target());
+        // makes 30 targets appear
       }
 
     }
 
     function draw() {
-      if (!started) {
+      if (!started) {// if game isn't started
         background(0, 55);
 
         fill(255, 0, 0);
         textSize(80);
-        text("Targets", 300, 270);
-
+        text("Targets", 300, 270);//Title
         textSize(15)
-        text("by Josiah V. Elbey and Ahmad Rabah", 340, 310);
-
+        text("by Josiah V. Elbey and Ahmad Rabah", 340, 310);//displays authors names
         fill(255);
-        text("Press Enter to play", 370, 370);
-
-
-
-
+        text("Press Enter to play", 370, 370);//directs user how to play 
       }
 
 
 
       if (keyCode === ENTER) {
-        started = true
+        started = true// if game is started
         background(0),
           fill(255)
         textSize(100)
-        text("Score: " + points, 200, 200)
+        text("Score: " + points, 200, 200);//display score 
         fill(255);
         textSize(50)
  var s = second();
-        text("Time Left: " + s, 150, 350)
-
-        crossHair();
+        text("Time Left: " + s, 150, 350);//display time
+        crossHair();//activate crossHair function 
         for (var i = 0; i < targets.length; i++) {
           targets[i].move();
           targets[i].display();
