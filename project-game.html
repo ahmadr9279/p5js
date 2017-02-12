@@ -49,18 +49,18 @@
         text("Time Left: " + s, 150, 350);//display time
         crossHair();//activate crossHair function 
         for (var i = 0; i < targets.length; i++) {
-          targets[i].move();
-          targets[i].display();
-          targets[i].bounce();
-          if (targets[i].fire()) {
-            targets.splice(i, 1);
-            targets.push(new Target());
+          targets[i].move();//activates instructions for how target moves
+          targets[i].display();//displays target
+          targets[i].bounce();//makes target bounce
+          if (targets[i].fire()) {//if the target gets clicked on
+            targets.splice(i, 1);//delete the target
+            targets.push(new Target());//add another target
             
           }
         }
-        if(s>30){
-          text("Game Over" + s,200,300)
-          noLoop()
+        if(s>30){//if 30 seconds is over
+          text("Game Over" + s,200,300)//tell them that the game is over
+          noLoop()//stop all game functions
          
         }
 
