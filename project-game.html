@@ -59,8 +59,8 @@
           }
         }
         if(s>30){//if 30 seconds is over
-          text("Game Over" + s,200,300)//tell them that the game is over
-          noLoop()//stop all game functions
+          text("Game Over" + s,200,300);//tell them that the game is over
+          noLoop();//stop all game functions
          
         }
 
@@ -79,23 +79,22 @@
       line(mouseX, mouseY, mouseX - 30, mouseY);
       line(mouseX, mouseY, mouseX, mouseY + 30);
       line(mouseX, mouseY, mouseX, mouseY - 30);
-
+      //instructions on how to make a crossHair 
     }
 
 
 
     function Target() {
-      this.x = random(10, width)
-      this.y = random(10, height)
-      this.speedX = random(xsp)
-      this.speedY = random(ysp)
-
-
+      this.x = random(10, width)// horizontal location made random
+      this.y = random(10, height)//vertical location made random
+      this.speedX = random(xsp)//responsible for horizontal speed
+      this.speedY = random(ysp)//responsible for vertical speed
       this.move = function() {
-        this.x = this.x + this.speedX;
-        this.y = this.y + this.speedY;
-
+        this.x = this.x + this.speedX;//keeps target horzontaly moving
+        this.y = this.y + this.speedY;//keeps target verticaly moving
+        //responsible for target movement and speed
       }
+     
 
 
       this.display = function() {
@@ -105,15 +104,14 @@
         ellipse(this.x, this.y, 30, 30);
         ellipse(this.x, this.y, 20, 20);
         ellipse(this.x, this.y, 10, 10);
-        point(this.x, this.y)
-
+        point(this.x, this.y);   
+        //responsible for how the targets look like
       }
 
 
       this.fire = function() {
-        if (dist(mouseX, mouseY, this.x, this.y) < 15 && mouseIsPressed) {
-
-          points++
+        if (dist(mouseX, mouseY, this.x, this.y) < 15 && mouseIsPressed) {//if you click on the target
+          points++//you get a point
           return true;
 
         }
@@ -122,16 +120,12 @@
 
       this.bounce = function() {
 
-        if (this.x < 0 || this.x > width) {
-
-          this.speedX = this.speedX * -1;
-
+        if (this.x < 0 || this.x > width) {//if target reaches left or right side of screen
+          this.speedX = this.speedX * -1;//move opposite direction
         }
 
-        if (this.y < 0 || this.y > height) {
-
-          this.speedY = this.speedY * -1;
-
+        if (this.y < 0 || this.y > height) {//if target reaches top or bottom side of screen
+          this.speedY = this.speedY * -1;//move opposite direction
         }
       }
 
