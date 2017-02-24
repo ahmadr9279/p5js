@@ -5,12 +5,12 @@
   <title>Target Practice</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.13/p5.js"></script>
   <script>
-    var targets = [];
-    var xsp = 5
-    var ysp = 5
-    var points = 0
-    var i = 0
-    var started = false //helps notify if game is started
+    var targets = [];//where the targets are held in
+    var xsp = 5;
+    var ysp = 5;
+    var points = 0;//keeps track of points
+    var i = 0;
+    var started = false; //helps notify if game is started
     function setup() {
       createCanvas(800, 600);
 
@@ -19,35 +19,37 @@
         targets.push(new Target());
         // makes 30 targets appear
       }
-
     }
 
     function draw() {
       if (!started) {// if game isn't started
         background(0, 55);
-
+        noCursor();// doesn't make cursor appear
+        fill(255);
+        var times =  floor(frameCount/60);//lets you know the time
+        textSize(20);
+        text("5 Seconds Till Game Begins", 50,50);//lets you know when the game will start
+        text(times, 135,100);
         fill(255, 0, 0);
         textSize(80);
         text("Targets", 300, 270);//Title
-        textSize(15)
+        textSize(15);
         text("by Josiah V. Elbey and Ahmad Rabah", 340, 310);//displays authors names
-        fill(255);
-        text("Press Enter to play", 370, 370);//directs user how to play 
       }
 
 
 
-      if (keyCode === ENTER) {
+      if (floor(frameCount/60) > 5) {
         started = true// if game is started
-        background(0),
-          fill(255)
-        textSize(100)
-        text("Score: " + points, 200, 200);//display score 
+        background(0);
+          fill(255);
+        textSize(100);
+        text("Score: " + points, 200, 200);//display score
         fill(255);
-        textSize(50)
- var s = second();
-        text("Time Left: " + s, 150, 350);//display time
-        crossHair();//activate crossHair function 
+        textSize(50);
+         Timing();//responsible for displaying the time the game has been running
+        Ending();//Responsible for ending the game
+        crossHair();//activate crossHair function
         for (var i = 0; i < targets.length; i++) {
           targets[i].move();//activates instructions for how target moves
           targets[i].display();//displays target
@@ -55,68 +57,60 @@
           if (targets[i].fire()) {//if the target gets clicked on
             targets.splice(i, 1);//delete the target
             targets.push(new Target());//add another target
-            
           }
         }
-        if(s>30){//if 30 seconds is over
-          text("Game Over" + s,200,300);//tell them that the game is over
-          noLoop();//stop all game functions
-         
-        }
-
-
       }
-
-
     }
+
 
 
     function crossHair() {
       fill(0);
-      stroke(255, 0, 0)
+      stroke(255, 0, 0);
       ellipse(mouseX, mouseY, 33, 33);
       line(mouseX, mouseY, mouseX + 30, mouseY);
       line(mouseX, mouseY, mouseX - 30, mouseY);
       line(mouseX, mouseY, mouseX, mouseY + 30);
       line(mouseX, mouseY, mouseX, mouseY - 30);
-      //instructions on how to make a crossHair 
+      //instructions on how to make a crossHair
     }
 
 
 
     function Target() {
-      this.x = random(10, width)// horizontal location made random
-      this.y = random(10, height)//vertical location made random
-      this.speedX = random(xsp)//responsible for horizontal speed
-      this.speedY = random(ysp)//responsible for vertical speed
+      this.x = random(10, width);// horizontal location made random
+      this.y = random(10, height);//vertical location made random
+      this.speedX = random(xsp);//responsible for horizontal speed
+      this.speedY = random(ysp);//responsible for vertical speed
       this.move = function() {
         this.x = this.x + this.speedX;//keeps target horzontaly moving
         this.y = this.y + this.speedY;//keeps target verticaly moving
         //responsible for target movement and speed
       }
-     
+  
 
 
       this.display = function() {
         fill(255);
-        stroke(255, 0, 0)
-        strokeWeight(3)
+        stroke(255, 0, 0);
+        strokeWeight(3);
         ellipse(this.x, this.y, 30, 30);
         ellipse(this.x, this.y, 20, 20);
         ellipse(this.x, this.y, 10, 10);
-        point(this.x, this.y);   
+        point(this.x, this.y);
         //responsible for how the targets look like
       }
+
 
 
       this.fire = function() {
         if (dist(mouseX, mouseY, this.x, this.y) < 15 && mouseIsPressed) {//if you click on the target
           points++//you get a point
           return true;
-
         }
-
       }
+      
+      
 
       this.bounce = function() {
 
@@ -128,12 +122,40 @@
           this.speedY = this.speedY * -1;//move opposite direction
         }
       }
-
     }
+    
+    
+    
+    function Timing(){
+      var time = floor(frameCount/60)-5;//responsible for the time
+  
+      if(starting = true){
+      fill(255);
+      text("Time:" + time, 200,250);//displays amount of time played
+    }}
+    //keeps track of time in the game
+   
+   
+   
+    function Ending(){
+      if(floor(frameCount/60) == 35){//if 30 sec. of playing is done
+        background(0);
+        fill(255);
+        textSize(100);
+        strokeWeight(4);
+      stroke(255, 204, 100);
+      text("GAME OVER", 100,300);//says that the game is over
+      text("Score: " + points, 200, 200);//shows you your final score
+      noLoop();//stops the game
+      }
+    }
+    //Teaches the computer how/when to end the game
+    
   </script>
 </head>
 
 <body>
+  <form><input TYPE="button" onClick="history.go(0)" value="Play Again"></form>
     <div id="code" class="container-fluid">
         <script src="https://gist-it.appspot.com/github/ahmadr9279/p5js/blob/gh-pages/project-game.html?footer=0"></script>
     </div>
@@ -144,7 +166,6 @@
             $('#code').before($('#defaultCanvas').remove());
         });
     </script>
- <form><input TYPE="button" onClick="history.go(0)" value="Reset"></form>
 </body>
 
 </html>
